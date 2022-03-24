@@ -14,6 +14,9 @@ productRouter.get("/", async (request, response) => {
 });
 productRouter.get("/:id", async (request, response) => {
 	const { id } = request.params;
+	
+	if (!id) return response.status(400).send('No id!');
+
 	try {
 		const oneProduct = await product.findByPk(id);
 		response.send(oneProduct);

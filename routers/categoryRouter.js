@@ -1,12 +1,14 @@
-const { response } = require('express');
 const { Router } = require('express');
-const categoryRouter = new Router;
 const { category } = require("../models");
-const { product } = require("../models");
+
+const categoryRouter = new Router;
 
 // PATH /categories
 categoryRouter.get('/:id', async (request, response) => {
 	const { id } = request.params;
+	
+	if (!id) return response.status(400).send('No id!');
+
 	try {
 		const oneCategory = await category.findByPk(id);
 		response.send(oneCategory);
