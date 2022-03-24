@@ -5,11 +5,11 @@ const { product } = require("../models")
 // PATH /products
 productRouter.get("/", async (request, response) => {
     try {
-    const allProducts = await product.findAll()
-    response.send(allProducts)
-    }catch(error){
-        console.log(error)
-        response.status(500).send("oops")
+		const allProducts = await product.findAll();
+		response.send(allProducts);
+    }catch (error){
+        console.log(error);
+        response.status(500).send("Something went wrong");
     }
 });
 productRouter.get("/:id", async (request, response) => {
@@ -19,8 +19,8 @@ productRouter.get("/:id", async (request, response) => {
 		response.send(oneProduct);
 	} catch (error) {
 		console.log('ERROR: product by id => ', error);
-        response.status(500).send("oops");
+        response.status(500).send("Something went wrong");
 	}
 });
 
-module.exports = productRouter
+module.exports = productRouter;
