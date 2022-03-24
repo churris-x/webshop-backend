@@ -4,6 +4,15 @@ const { category } = require("../models");
 const categoryRouter = new Router;
 
 // PATH /categories
+categoryRouter.get('/', async (request, response) => {
+	try {
+		const allCategories = await category.findAll();
+		response.send(allCategories);
+	} catch (error) {
+		response.status(500).send("Something went wrong");
+	}
+});
+
 categoryRouter.get('/:id', async (request, response) => {
 	const { id } = request.params;
 	
